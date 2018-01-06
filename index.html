@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模仿数据接收</title>
+</head>
+
+<body>
+    <div id="updatedcontent"></div>
+</body>
+<script>
+    var date = {
+        "updateTable": [{
+            "mondays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "tuesdays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "wednesdays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "thursdays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "fridays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "saturdays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }, {
+            "sundays": [{
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }, {
+                "title": "妖怪公寓的幽雅日常",
+                "number": "26",
+                "web": "http://www.baidu.com",
+                "img": "http://via.placeholder.com/140x140"
+            }]
+        }]
+    }
+
+
+
+    //单个节目对象(属性)
+    function ContentList() {
+        //节目标题
+        this.title = "";
+        //节目集数
+        this.number = 0;
+        //节目链接
+        this.number = "";
+        //简介图片
+        this.img = "";
+    }
+    //方法
+    ContentList.prototype = {
+        bindDom: function() {
+            var str = "";
+            str += "<li class='fix fl'>";
+            str += "<a href='" + this.web + "' class='updated-item-pic fl'><img src='" + this.img +
+                "' class='img-rounded'></a>";
+            str += "<div class='updated-item-detail fl'>";
+            str += "<p class='updated-item-detail-title'><a href='" + this.web + "'>" + this.title +
+                "</a></p>";
+            str += "<p class='updated-item-detail-num'>更新至<a href='" + this.web + "' class='num'>第" + this.number +
+                "集</a></p>";
+            str += "</div>";
+            str += "</li>";
+
+            return str;
+        }
+    }
+
+    var days = date.updateTable;
+    var str = "";
+    for (var i = 0; i < days.length; i++) {
+        var day = days[i];
+        for (var prop in day) {
+            for (var j = 0; j < day[prop].length; j++) {
+                var dato = day[prop][j];
+                var contentlist = new ContentList();
+                contentlist.title = dato.title;
+                contentlist.number = dato.number;
+                contentlist.web = dato.web;
+                contentlist.img = dato.img;
+                str += contentlist.bindDom();
+            }
+        }
+    }
+    var updatedcontent = document.getElementById("updatedcontent");
+    updatedcontent.innerHTML = str;
+</script>
+
+</html>
